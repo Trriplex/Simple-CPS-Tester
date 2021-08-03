@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CPS Test</title>
+	<style>
+	body {
+		background-color: #000;
+	}
+	#btn {
+		width: 100%;
+		color: #fff;
+		height: 500px;
+		border: 1px solid #000;
+		font-size: 50px;
+		background-image: linear-gradient(to top, rgb(121, 11, 11), rgb(155, 28, 142));
+		display: block;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+	<script>
+	var started = false;
+	var ended = false;
+	var clicks = 0;
+	function print(str) { document.getElementById("btn").innerHTML = str }
+	function okk() {
+		if (!started) {
+			started = true;
+			setTimeout(function(){ ended = true; }, 5000);
+		} else {
+			if (!ended) {
+				clicks++;
+				print(clicks+" clicks !");
+			} else {
+				var cps = clicks/5;
+				if (cps < 2) {
+					print("You need to click !");
+				} else if (cps >= 2 && cps < 5) {
+					print("noob");
+				} else if (cps >= 5 && cps < 8) {
+					print("Uh...");
+				} else if (cps >= 8 && cps < 10) {
+					print("Pretty ok...");
+				} else if (cps >= 10 && cps < 15) {
+					print("Not bad !");
+				} else {
+					print("Very good !");
+				}
+				document.getElementById("btn").innerHTML += "<br>CPS: "+(cps);
+			}
+		}
+	}
+	</script>
+	<button onclick="okk()" id="btn">CLICK HERE !!!!</button>
+</body>
+</html>
